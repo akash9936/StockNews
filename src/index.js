@@ -19,30 +19,38 @@ async function fetchAndSendAllInsights() {
       return;
     }
 
-    // Get only new insights
-    const newInsights = await insightTracker.getNewInsights(allInsights);
-    const newInsightsCount = newInsights.length;
-
-    if (newInsightsCount === 0) {
-      logger.info(`No new insights to send. Total insights available: ${allInsights.length}`);
-      return;
+    // Get insights based on tracking configuration
+    let insights;
+    if (config.marketInsights.marketInsights.tracking.enabled) {
+      // Use insight tracker if enabled
+      insights = await insightTracker.getNewInsights(allInsights);
+      const newInsightsCount = insights.length;
+      
+      if (newInsightsCount === 0) {
+        logger.info(`No new insights to send. Total insights available: ${allInsights.length}`);
+        return;
+      }
+      
+      logger.info(`Found ${newInsightsCount} new insights out of ${allInsights.length} total insights`);
+    } else {
+      // Skip tracking and use all insights
+      insights = allInsights;
+      logger.info(`Processing ${insights.length} total insights (tracking disabled)`);
     }
 
     // Separate market insights and screen insights
-    const marketInsights = newInsights.filter(i => !i.type || i.type !== 'SCREEN');
-    const screenInsights = newInsights.filter(i => i.type === 'SCREEN');
+    const marketInsights = insights.filter(i => !i.type || i.type !== 'SCREEN');
+    const screenInsights = insights.filter(i => i.type === 'SCREEN');
 
     // Log counts by type
     const marketInsightsCount = marketInsights.length;
     const screenInsightsCount = screenInsights.length;
 
-    logger.info(`Found ${newInsightsCount} new insights out of ${allInsights.length} total insights`);
-    logger.info(`- Market insights: ${marketInsightsCount}`);
-    logger.info(`- Screen insights: ${screenInsightsCount}`);
+    logger.info(`Processing insights - Market: ${marketInsightsCount}, Screen: ${screenInsightsCount}`);
     
     // Send market insights if any
     if (marketInsights.length > 0) {
-      logger.info(`Processing ${marketInsights.length} market insights`);
+      logger.info(`Sending ${marketInsights.length} market insights`);
       await telegramService.sendMessage(marketInsights, 'MARKET INSIGHTS');
       logger.info(`Successfully sent ${marketInsights.length} market insights to Telegram`);
     }
@@ -67,7 +75,7 @@ async function fetchAndSendAllInsights() {
       const screenConfig = config.marketInsights.screens.find(s => s.title === screenType);
       const title = screenConfig ? screenConfig.title : screenType;
       
-      logger.info(`Processing ${insights.length} insights for ${title}`);
+      logger.info(`Sending ${insights.length} insights for ${title}`);
       try {
         await telegramService.sendMessage(insights, title);
         logger.info(`Successfully sent ${insights.length} insights for ${title} to Telegram`);
