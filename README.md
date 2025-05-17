@@ -15,6 +15,7 @@ A Node.js service that fetches market insights from Trendlyne and sends them to 
 - Configurable cron scheduling
 - Added github workflow
 
+
 ## Prerequisites
 
 - Node.js (v14 or higher)
