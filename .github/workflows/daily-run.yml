@@ -5,7 +5,7 @@ on:
     branches:
       - dev 
   schedule:
-    - cron: '0 5 * * *'  # every day at 5 AM UTC (adjust time as needed)
+    - cron: '0 * * * *'  # every day at 5 AM UTC (adjust time as needed)
   workflow_dispatch:      # manual run button in GitHub
 
 jobs:
