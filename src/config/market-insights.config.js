@@ -4,7 +4,7 @@ module.exports = {
     enabled: process.env.ENABLE_MARKET_INSIGHTS === 'true' || true,
     url: process.env.TRENDLYNE_API_URL || 'https://trendlyne.com/equity/api/market-insight/',
     cron: {
-      schedule: process.env.MARKET_INSIGHTS_CRON || '*/15 * * * *', // Every 5 minutes by default
+      schedule: process.env.MARKET_INSIGHTS_CRON || '*/2 * * * *', // Every 5 minutes by default
       timezone: process.env.CRON_TIMEZONE || 'Asia/Kolkata'
     }
   },
@@ -16,7 +16,7 @@ module.exports = {
       title: 'Top Gainers Stocks',
       enabled: process.env.ENABLE_TOP_GAINERS === 'true' || true,
       cron: {
-        schedule: process.env.TOP_GAINERS_CRON || '*/50 * * * *', // Every 5 minutes by default
+        schedule: process.env.TOP_GAINERS_CRON || '*/2 * * * *', // Every 5 minutes by default
         timezone: process.env.CRON_TIMEZONE || 'Asia/Kolkata'
       }
     },
