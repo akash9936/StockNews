@@ -117,25 +117,38 @@ async function main() {
     logger.info(messages.LOGS.STARTING);
     logger.info(messages.LOGS.ENV_INFO.replace('{env}', config.app.env));
     
-    // Start the scheduler for all insights
-    const schedule = config.marketInsights.marketInsights.cron.schedule;
-    const timezone = config.marketInsights.marketInsights.cron.timezone;
+    // Check if we're running in GitHub Actions
+    const isGitHubAction = process.env.GITHUB_ACTIONS === 'true';
     
-    schedulerService.start(fetchAndSendAllInsights, 'market-insights', schedule, timezone);
-    
-    // Handle process termination
-    process.on('SIGINT', () => {
-      logger.info('Received SIGINT. Stopping scheduler...');
-      schedulerService.stop();
+    if (isGitHubAction) {
+      // In GitHub Actions, just run once and exit
+      logger.info('Running in GitHub Actions - executing once and exiting');
+      await fetchAndSendAllInsights();
+      logger.success('Completed single run in GitHub Actions');
       process.exit(0);
-    });
+    } else {
+      // In local environment, run with scheduler
+      logger.info('Running in local environment - starting scheduler');
+      
+      // Start the scheduler for all insights
+      const schedule = config.marketInsights.marketInsights.cron.schedule;
+      const timezone = config.marketInsights.marketInsights.cron.timezone;
+      
+      schedulerService.start(fetchAndSendAllInsights, 'market-insights', schedule, timezone);
+      
+      // Handle process termination
+      process.on('SIGINT', () => {
+        logger.info('Received SIGINT. Stopping scheduler...');
+        schedulerService.stop();
+        process.exit(0);
+      });
 
-    process.on('SIGTERM', () => {
-      logger.info('Received SIGTERM. Stopping scheduler...');
-      schedulerService.stop();
-      process.exit(0);
-    });
-
+      process.on('SIGTERM', () => {
+        logger.info('Received SIGTERM. Stopping scheduler...');
+        schedulerService.stop();
+        process.exit(0);
+      });
+    }
   } catch (error) {
     logger.error(messages.LOGS.FAILED.replace('{error}', error.message), error);
     process.exit(1);
