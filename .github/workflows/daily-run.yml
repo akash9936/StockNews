@@ -1,31 +1,35 @@
 name: Daily Stock Alert Bot
 
 on:
+  schedule:
+    - cron: '*/5 * * * *'  # Runs every 5 minutes (UTC)
+  workflow_dispatch:        # Allows manual trigger
   push:
     branches:
-      - devV1
-  schedule:
-    - cron: '*/5 * * * *'  # every day at 5 AM UTC (adjust time as needed)
-  workflow_dispatch:      # manual run button in GitHub
+      - devV1               # Also runs on push to devV1
 
 jobs:
   run-bot:
     runs-on: ubuntu-latest
+    timeout-minutes: 10     # Prevents it from hanging forever
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+      - name: 📦 Checkout repository
+        uses: actions/checkout@v3
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
+      - name: 🔧 Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
 
-    - name: Install dependencies
-      run: npm i
+      - name: 📦 Install dependencies
+        run: npm install
 
-    - name: Run the bot
-      env:
-        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-        TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
-      run: npm start
+      - name: 🚀 Run the bot
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
+        run: |
+          echo "⏰ Starting bot at $(date -u)"
+          npm start
+          echo "✅ Bot finished at $(date -u)"
