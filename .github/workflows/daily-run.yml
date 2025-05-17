@@ -3,7 +3,7 @@ name: Daily Stock Alert Bot
 on:
   push:
     branches:
-      - devV1
+      - devV2
   schedule:
     - cron: '*/5 * * * *'  # every day at 5 AM UTC (adjust time as needed)
   workflow_dispatch:      # manual run button in GitHub
