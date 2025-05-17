@@ -1,8 +1,56 @@
 const logger = require('./logger');
+const fs = require('fs').promises;
+const path = require('path');
 
 class InsightTracker {
   constructor() {
     this.lastInsights = new Map(); // Map to store last sent insights
+    this.storageFile = path.join(__dirname, '../../data/insight-tracker.json');
+    this.initialized = false;
+  }
+
+  /**
+   * Initialize the tracker by loading persisted data
+   */
+  async initialize() {
+    if (this.initialized) return;
+
+    try {
+      // Create data directory if it doesn't exist
+      await fs.mkdir(path.dirname(this.storageFile), { recursive: true });
+      
+      // Try to load existing data
+      try {
+        const data = await fs.readFile(this.storageFile, 'utf8');
+        const savedInsights = JSON.parse(data);
+        this.lastInsights = new Map(Object.entries(savedInsights));
+        logger.info(`Loaded ${this.lastInsights.size} tracked insights from storage`);
+      } catch (error) {
+        if (error.code === 'ENOENT') {
+          logger.info('No existing insight tracker data found, starting fresh');
+        } else {
+          logger.error('Error loading insight tracker data:', error);
+        }
+      }
+      
+      this.initialized = true;
+    } catch (error) {
+      logger.error('Failed to initialize insight tracker:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Save the current state to disk
+   */
+  async persistData() {
+    try {
+      const data = Object.fromEntries(this.lastInsights);
+      await fs.writeFile(this.storageFile, JSON.stringify(data, null, 2));
+      logger.debug(`Persisted ${this.lastInsights.size} insights to storage`);
+    } catch (error) {
+      logger.error('Failed to persist insight tracker data:', error);
+    }
   }
 
   /**
@@ -23,9 +71,13 @@ class InsightTracker {
   /**
    * Compare new insights with previously sent ones
    * @param {Array} newInsights - Array of new insights
-   * @returns {Array} Array of new insights that haven't been sent before
+   * @returns {Promise<Array>} Array of new insights that haven't been sent before
    */
-  getNewInsights(newInsights) {
+  async getNewInsights(newInsights) {
+    if (!this.initialized) {
+      await this.initialize();
+    }
+
     if (!newInsights || !Array.isArray(newInsights)) {
       return [];
     }
@@ -53,23 +105,30 @@ class InsightTracker {
       logger.debug(`Cleaned up ${keysToDelete.length} old insights`);
     }
 
+    // Persist the updated data
+    if (uniqueNewInsights.length > 0) {
+      await this.persistData();
+    }
+
     return uniqueNewInsights;
   }
 
   /**
    * Get count of new insights
    * @param {Array} newInsights - Array of new insights
-   * @returns {number} Count of new insights
+   * @returns {Promise<number>} Count of new insights
    */
-  getNewInsightsCount(newInsights) {
-    return this.getNewInsights(newInsights).length;
+  async getNewInsightsCount(insights) {
+    const uniqueInsights = await this.getNewInsights(insights);
+    return uniqueInsights.length;
   }
 
   /**
    * Clear all tracked insights
    */
-  clearInsights() {
+  async clearInsights() {
     this.lastInsights.clear();
+    await this.persistData();
     logger.info('Cleared all tracked insights');
   }
 }

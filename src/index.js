@@ -20,7 +20,7 @@ async function fetchAndSendAllInsights() {
     }
 
     // Get only new insights
-    const newInsights = insightTracker.getNewInsights(allInsights);
+    const newInsights = await insightTracker.getNewInsights(allInsights);
     const newInsightsCount = newInsights.length;
 
     if (newInsightsCount === 0) {
