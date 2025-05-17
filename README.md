@@ -13,6 +13,7 @@ A Node.js service that fetches market insights from Trendlyne and sends them to 
 - Base service class for common functionality
 - Message templates and constants
 - Configurable cron scheduling
+- Added github workflow
 
 ## Prerequisites
 
