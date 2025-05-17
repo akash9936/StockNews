@@ -23,8 +23,10 @@ class SchedulerService {
    * Starts the scheduler
    * @param {Function} task - The task to execute
    * @param {string} [jobName='default'] - Name of the job
+   * @param {string} [cronExpression] - Custom cron expression
+   * @param {string} [timezone] - Custom timezone
    */
-  start(task, jobName = 'default') {
+  start(task, jobName = 'default', cronExpression = null, timezone = null) {
     if (!config.app.cron.enabled) {
       logger.info('Cron jobs are disabled in configuration');
       return;
@@ -35,11 +37,13 @@ class SchedulerService {
       return;
     }
 
-    const cronExpression = this.getCronExpression(config.app.cron.interval);
+    // Use provided cron expression or default to interval-based
+    const schedule = cronExpression || this.getCronExpression(config.app.cron.interval);
+    const jobTimezone = timezone || config.app.cron.timezone;
     
-    logger.info(`Starting cron job '${jobName}' with schedule: ${cronExpression}`);
+    logger.info(`Starting cron job '${jobName}' with schedule: ${schedule} (${jobTimezone})`);
     
-    const job = cron.schedule(cronExpression, async () => {
+    const job = cron.schedule(schedule, async () => {
       try {
         logger.info(`Executing scheduled task: ${jobName}`);
         await task();
@@ -48,7 +52,7 @@ class SchedulerService {
       }
     }, {
       scheduled: true,
-      timezone: config.app.cron.timezone
+      timezone: jobTimezone
     });
 
     this.jobs.set(jobName, job);

@@ -7,16 +7,17 @@ const messages = require('../../constants/messages');
 class TrendlyneService extends BaseService {
   constructor() {
     super({
-      headers: config.trendlyne.headers
+      headers: config.marketInsights.requestConfig.headers
     });
-    this.url = config.trendlyne.url;
+    this.marketInsightsUrl = config.marketInsights.marketInsights.url;
+    this.screenerUrl = config.marketInsights.baseUrl;
   }
 
   /**
-   * Gets the parameters for the API request
+   * Gets the parameters for the market insights API request
    * @return {Object} The request parameters
    */
-  getParams() {
+  getMarketInsightParams() {
     const today = moment();
     const yesterday = moment().subtract(1, 'days');
     
@@ -28,14 +29,28 @@ class TrendlyneService extends BaseService {
   }
 
   /**
-   * Fetches data from Trendlyne API
+   * Gets the URL for a specific screen
+   * @param {string} screenId - The screen ID
+   * @return {string} The complete URL
+   */
+  getScreenUrl(screenId) {
+    return `${this.screenerUrl}/${screenId}/5/0/index/NIFTY500/`;
+  }
+
+  /**
+   * Fetches data from Trendlyne Market Insights API
    * @return {Promise<Array>} The market insights data
    */
   async fetchMarketInsights() {
+    if (!config.marketInsights.marketInsights.enabled) {
+      logger.info('Market insights are disabled in configuration');
+      return [];
+    }
+
     try {
       logger.info(messages.LOGS.FETCHING);
       
-      const data = await this.get(this.url, this.getParams());
+      const data = await this.get(this.marketInsightsUrl, this.getMarketInsightParams());
       
       if (data && data.head && data.head.status === "0" && data.body) {
         logger.success('API request successful');
@@ -47,10 +62,6 @@ class TrendlyneService extends BaseService {
         const insights = data.body.marketInsights;
         if (insights && Array.isArray(insights)) {
           logger.success(messages.LOGS.RETRIEVED.replace('{count}', insights.length));
-          
-          // Log sample insights
-          logger.debug('Sample Insights:', insights.slice(0, 3));
-          
           return insights;
         }
       }
@@ -62,6 +73,85 @@ class TrendlyneService extends BaseService {
       logger.error('Error fetching market insights', error);
       return [];
     }
+  }
+
+  /**
+   * Fetches data from a specific Trendlyne Screen
+   * @param {Object} screen - The screen configuration
+   * @return {Promise<Array>} The screen insights data
+   */
+  async fetchScreenInsights(screen) {
+    if (!screen.enabled) {
+      logger.info(`Screen ${screen.title} is disabled in configuration`);
+      return [];
+    }
+
+    try {
+      logger.info(`Fetching insights for screen: ${screen.title}`);
+      
+      const data = await this.get(this.getScreenUrl(screen.id), {}, {
+        headers: config.marketInsights.requestConfig.headers
+      });
+      
+      if (data && data.screenData && Array.isArray(data.screenData)) {
+        logger.success(`Successfully retrieved ${data.screenData.length} insights for ${screen.title}`);
+        
+        // Transform the data to match the market insights format
+        const insights = data.screenData.map(item => ({
+          title: `${screen.title}: ${item.name}`,
+          description: `${item.name} - ${item.value}%`,
+          url: `https://trendlyne.com${item.stockurl}`,
+          timestamp: moment().format('YYYY-MM-DD HH:mm:ss'),
+          type: 'SCREEN',
+          screenType: screen.title,
+          details: item.tooltipParams.reduce((acc, param) => {
+            acc[param.key] = param.value;
+            return acc;
+          }, {})
+        }));
+
+        return insights;
+      }
+      
+      logger.warn(`No data found for screen: ${screen.title}`);
+      return [];
+      
+    } catch (error) {
+      logger.error(`Error fetching insights for screen ${screen.title}:`, error);
+      return [];
+    }
+  }
+
+  /**
+   * Fetches insights from all enabled screens
+   * @return {Promise<Array>} Combined insights from all screens
+   */
+  async fetchAllScreenInsights() {
+    const enabledScreens = config.marketInsights.screens.filter(screen => screen.enabled);
+    const allInsights = [];
+
+    for (const screen of enabledScreens) {
+      const insights = await this.fetchScreenInsights(screen);
+      allInsights.push(...insights);
+    }
+
+    return allInsights;
+  }
+
+  /**
+   * Fetches all insights (both market insights and screen insights)
+   * @return {Promise<Array>} Combined insights from all sources
+   */
+  async fetchAllInsights() {
+    const [marketInsights, screenInsights] = await Promise.all([
+      this.fetchMarketInsights(),
+      this.fetchAllScreenInsights()
+    ]);
+
+    return [
+      ...(marketInsights || []),
+      ...(screenInsights || [])
+    ];
   }
 }
 
