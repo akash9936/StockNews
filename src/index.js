@@ -1,6 +1,7 @@
 const trendlyneService = require('./services/trendlyne/trendlyne.service');
 const telegramService = require('./services/telegram/telegram.service');
 const schedulerService = require('./services/scheduler/scheduler.service');
+const insightTracker = require('./utils/insight.tracker');
 const config = require('./config');
 const logger = require('./utils/logger');
 const messages = require('./constants/messages');
@@ -11,15 +12,27 @@ const messages = require('./constants/messages');
 async function fetchAndSendInsights() {
   try {
     // Fetch data from Trendlyne
-    const insights = await trendlyneService.fetchMarketInsights();
+    const allInsights = await trendlyneService.fetchMarketInsights();
     
-    if (!insights || insights.length === 0) {
+    if (!allInsights || allInsights.length === 0) {
       logger.warn(messages.LOGS.NO_DATA);
       return;
     }
+
+    // Get only new insights
+    const newInsights = insightTracker.getNewInsights(allInsights);
+    const newInsightsCount = newInsights.length;
+
+    if (newInsightsCount === 0) {
+      logger.info(`No new insights to send. Total insights available: ${allInsights.length}`);
+      return;
+    }
+
+    logger.info(`Found ${newInsightsCount} new insights out of ${allInsights.length} total insights`);
     
-    // Send to Telegram
-    await telegramService.sendMessage(insights);
+    // Send only new insights to Telegram
+    await telegramService.sendMessage(newInsights);
+    logger.info(`Successfully sent ${newInsightsCount} new insights to Telegram`);
     
   } catch (error) {
     logger.error(messages.LOGS.FAILED.replace('{error}', error.message), error);
