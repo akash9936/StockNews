@@ -16,7 +16,7 @@ module.exports = {
       title: 'Top Gainers Stocks',
       enabled: process.env.ENABLE_TOP_GAINERS === 'true' || true,
       cron: {
-        schedule: process.env.TOP_GAINERS_CRON || '*/2 * * * *', // Every 5 minutes by default
+        schedule: process.env.TOP_GAINERS_CRON || '*/20 * * * *', // Every 5 minutes by default
         timezone: process.env.CRON_TIMEZONE || 'Asia/Kolkata'
       }
     },

@@ -2,6 +2,13 @@
 
 A Node.js service that fetches market insights from Trendlyne and sends them to a Telegram channel.
 
+## branch
+dev: cron run with local and stop duplicate data
+devV1: Run process and exit the code
+devV2: Run cron without blocking history send message to telegram every time
+from dev -> devubu: Deploy in ubuntu machine
+
+
 ## Features
 
 - Fetches market insights from Trendlyne API
