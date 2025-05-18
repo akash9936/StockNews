@@ -4,7 +4,7 @@ module.exports = {
     enabled: process.env.ENABLE_MARKET_INSIGHTS === 'true' || true,
     url: process.env.TRENDLYNE_API_URL || 'https://trendlyne.com/equity/api/market-insight/',
     cron: {
-      schedule: process.env.MARKET_INSIGHTS_CRON || '0 */1 * * *', // Every hour at minute 0
+      schedule: process.env.MARKET_INSIGHTS_CRON || '*/1 * * * *', // Every hour at minute 0
       timezone: process.env.CRON_TIMEZONE || 'Asia/Kolkata'
     }
   },

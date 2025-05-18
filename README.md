@@ -8,7 +8,9 @@ devV1: Run process and exit the code
 devV2: Run cron without blocking history send message to telegram every time
 from dev -> devubu: Deploy in ubuntu machine
 
+## prod deployment for ubuntu machine
 
+run ./deploy.sh
 ## Features
 
 - Fetches market insights from Trendlyne API
