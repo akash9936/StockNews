@@ -12,13 +12,40 @@ class Logger {
   }
 
   /**
+   * Get formatted timestamp
+   * @returns {string} Formatted timestamp
+   */
+  getTimestamp() {
+    const now = new Date();
+    return now.toLocaleString('en-US', {
+      timeZone: 'Asia/Kolkata',
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false
+    });
+  }
+
+  /**
+   * Format log message with timestamp
+   * @param {string} message - The message to format
+   * @returns {string} Formatted message with timestamp
+   */
+  formatMessage(message) {
+    return `[${this.getTimestamp()}] ${message}`;
+  }
+
+  /**
    * Logs an error message
    * @param {string} message - The message to log
    * @param {Error} [error] - Optional error object
    */
   error(message, error = null) {
     if (this.currentLevel >= this.logLevels.error) {
-      console.error(`❌ ${message}`);
+      console.error(this.formatMessage(`❌ ${message}`));
       if (error) {
         console.error(error);
       }
@@ -31,7 +58,7 @@ class Logger {
    */
   warn(message) {
     if (this.currentLevel >= this.logLevels.warn) {
-      console.warn(`⚠️ ${message}`);
+      console.warn(this.formatMessage(`⚠️ ${message}`));
     }
   }
 
@@ -41,7 +68,7 @@ class Logger {
    */
   info(message) {
     if (this.currentLevel >= this.logLevels.info) {
-      console.info(`ℹ️ ${message}`);
+      console.info(this.formatMessage(`ℹ️ ${message}`));
     }
   }
 
@@ -52,7 +79,7 @@ class Logger {
    */
   debug(message, data = null) {
     if (this.currentLevel >= this.logLevels.debug) {
-      console.debug(`🔍 ${message}`);
+      console.debug(this.formatMessage(`🔍 ${message}`));
       if (data) {
         console.debug(data);
       }
@@ -65,7 +92,7 @@ class Logger {
    */
   success(message) {
     if (this.currentLevel >= this.logLevels.info) {
-      console.info(`✅ ${message}`);
+      console.info(this.formatMessage(`✅ ${message}`));
     }
   }
 }
