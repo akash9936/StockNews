@@ -2,7 +2,9 @@ module.exports = {
   apps: [{
     name: "trendlyne-bot",
     script: "src/index.js",
-    watch: true,
+    watch: false,
+    max_memory_restart: "1G",
+    exp_backoff_restart_delay: 100,
     env: {
       "NODE_ENV": "production",
       "TELEGRAM_BOT_TOKEN": process.env.TELEGRAM_BOT_TOKEN,
