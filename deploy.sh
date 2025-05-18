@@ -3,6 +3,11 @@
 # Create logs directory if it doesn't exist
 mkdir -p logs
 
+# Clean up any existing PM2 processes
+echo "Cleaning up existing PM2 processes..."
+pm2 delete trendlyne-bot 2>/dev/null || true
+pm2 flush 2>/dev/null || true
+
 # Install dependencies
 echo "Installing dependencies..."
 npm install
@@ -15,17 +20,13 @@ if [ ! -f .env ]; then
     echo "Please update the .env file with your actual credentials"
 fi
 
-# Start or restart the application with PM2
+# Start the application with PM2
 echo "Starting application with PM2..."
-if pm2 list | grep -q "trendlyne-bot"; then
-    echo "Restarting existing application..."
-    pm2 restart trendlyne-bot
-else
-    echo "Starting new application..."
-    pm2 start ecosystem.config.js
-fi
+pm2 start ecosystem.config.js
 
 # Save PM2 process list
 pm2 save
 
-echo "Deployment completed! Check logs with: pm2 logs trendlyne-bot" 
+# Show logs immediately
+echo "Deployment completed! Showing logs..."
+pm2 logs trendlyne-bot 

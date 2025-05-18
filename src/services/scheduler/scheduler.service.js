@@ -58,10 +58,8 @@ class SchedulerService {
     this.jobs.set(jobName, job);
     this.isRunning = true;
     
-    // Execute task immediately on start
-    task().catch(error => {
-      logger.error(`Error in initial task execution ${jobName}:`, error);
-    });
+    // Remove immediate execution
+    logger.info(`Scheduled job '${jobName}' will start at next scheduled time`);
   }
 
   /**

@@ -5,7 +5,7 @@ module.exports = {
   // Cron job configuration
   cron: {
     enabled: process.env.CRON_ENABLED === 'true' || true,
-    interval: parseInt(process.env.CRON_INTERVAL_MINUTES || '1', 10), // Default to 1 minute
+    interval: parseInt(process.env.CRON_INTERVAL_MINUTES || '60', 10), // Default to 60 minutes
     timezone: process.env.CRON_TIMEZONE || 'Asia/Kolkata'
   },
   // Add any other app-specific configuration here
