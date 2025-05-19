@@ -4,67 +4,67 @@ module.exports = {
     enabled: process.env.ENABLE_MARKET_INSIGHTS === 'true' || true,
     url: process.env.TRENDLYNE_API_URL || 'https://trendlyne.com/equity/api/market-insight/',
     cron: {
-      schedule: process.env.MARKET_INSIGHTS_CRON || '*/20 * * * *', // Every hour at minute 0
+      schedule: process.env.MARKET_INSIGHTS_CRON || '*/30 * * * *', // Every hour at minute 0
       timezone: process.env.CRON_TIMEZONE || 'Asia/Kolkata'
     }
   },
 
   // Screen insights configuration
   screens: [
-    {
-      id: '515750',
-      title: 'Top Gainers Stocks',
-      enabled: process.env.ENABLE_TOP_GAINERS === 'true' || true,
-      cron: {
-        schedule: process.env.TOP_GAINERS_CRON || '* */2 * * *', // Every hour at minute 30
-        timezone: process.env.CRON_TIMEZONE || 'Asia/Kolkata'
-      }
-    },
-    {
-      id: '515751',
-      title: 'Top Losers Stocks',
-      enabled: process.env.ENABLE_TOP_LOSERS === 'true' || true,
-      cron: {
-        schedule: process.env.TOP_LOSERS_CRON || '* */2 * * *', // Every hour at minute 30
-        timezone: process.env.CRON_TIMEZONE || 'Asia/Kolkata'
-      }
-    },
-    {
-      id: '515753',
-      title: 'New 52 week Low',
-      enabled: process.env.ENABLE_52W_LOW === 'true' || true,
-      cron: {
-        schedule: process.env.NEW_52W_LOW_CRON || '* */2 * * *', // Every hour at minute 30
-        timezone: process.env.CRON_TIMEZONE || 'Asia/Kolkata'
-      }
-    },
-    {
-      id: '515755',
-      title: 'Relative Outperformance versus Nifty 500 over 1 Week',
-      enabled: process.env.ENABLE_RELATIVE_OUTPERFORMANCE === 'true' || true,
-      cron: {
-        schedule: process.env.RELATIVE_OUTPERFORMANCE_CRON || '* */2 * * *', // Every hour at minute 30
-        timezone: process.env.CRON_TIMEZONE || 'Asia/Kolkata'
-      }
-    },
-    {
-      id: '515756',
-      title: 'Relative Underperformance versus Nifty500 over 1 Week',
-      enabled: process.env.ENABLE_RELATIVE_UNDERPERFORMANCE === 'true' || true,
-      cron: {
-        schedule: process.env.RELATIVE_UNDERPERFORMANCE_CRON || '* */2 * * *', // Every hour at minute 30
-        timezone: process.env.CRON_TIMEZONE || 'Asia/Kolkata'
-      }
-    },
-    {
-      id: '515761',
-      title: 'High Volume, Top Losers',
-      enabled: process.env.ENABLE_HIGH_VOLUME_LOSERS === 'true' || true,
-      cron: {
-        schedule: process.env.HIGH_VOLUME_LOSERS_CRON || '* */2 * * *', // Every hour at minute 30
-        timezone: process.env.CRON_TIMEZONE || 'Asia/Kolkata'
-      }
-    }
+    // {
+    //   id: '515750',
+    //   title: 'Top Gainers Stocks',
+    //   enabled: process.env.ENABLE_TOP_GAINERS === 'true' || true,
+    //   cron: {
+    //     schedule: process.env.TOP_GAINERS_CRON || '* */2 * * *', // Every hour at minute 30
+    //     timezone: process.env.CRON_TIMEZONE || 'Asia/Kolkata'
+    //   }
+    // },
+    // {
+    //   id: '515751',
+    //   title: 'Top Losers Stocks',
+    //   enabled: process.env.ENABLE_TOP_LOSERS === 'true' || true,
+    //   cron: {
+    //     schedule: process.env.TOP_LOSERS_CRON || '* */2 * * *', // Every hour at minute 30
+    //     timezone: process.env.CRON_TIMEZONE || 'Asia/Kolkata'
+    //   }
+    // },
+    // {
+    //   id: '515753',
+    //   title: 'New 52 week Low',
+    //   enabled: process.env.ENABLE_52W_LOW === 'true' || true,
+    //   cron: {
+    //     schedule: process.env.NEW_52W_LOW_CRON || '* */2 * * *', // Every hour at minute 30
+    //     timezone: process.env.CRON_TIMEZONE || 'Asia/Kolkata'
+    //   }
+    // },
+    // {
+    //   id: '515755',
+    //   title: 'Relative Outperformance versus Nifty 500 over 1 Week',
+    //   enabled: process.env.ENABLE_RELATIVE_OUTPERFORMANCE === 'true' || true,
+    //   cron: {
+    //     schedule: process.env.RELATIVE_OUTPERFORMANCE_CRON || '* */2 * * *', // Every hour at minute 30
+    //     timezone: process.env.CRON_TIMEZONE || 'Asia/Kolkata'
+    //   }
+    // },
+    // {
+    //   id: '515756',
+    //   title: 'Relative Underperformance versus Nifty500 over 1 Week',
+    //   enabled: process.env.ENABLE_RELATIVE_UNDERPERFORMANCE === 'true' || true,
+    //   cron: {
+    //     schedule: process.env.RELATIVE_UNDERPERFORMANCE_CRON || '* */2 * * *', // Every hour at minute 30
+    //     timezone: process.env.CRON_TIMEZONE || 'Asia/Kolkata'
+    //   }
+    // },
+    // {
+    //   id: '515761',
+    //   title: 'High Volume, Top Losers',
+    //   enabled: process.env.ENABLE_HIGH_VOLUME_LOSERS === 'true' || true,
+    //   cron: {
+    //     schedule: process.env.HIGH_VOLUME_LOSERS_CRON || '* */2 * * *', // Every hour at minute 30
+    //     timezone: process.env.CRON_TIMEZONE || 'Asia/Kolkata'
+    //   }
+    // }
   ],
   
   // Base URL for the screener API
