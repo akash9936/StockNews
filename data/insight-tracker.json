@@ -1,0 +1,352 @@
+{
+  "SCREEN_Top Gainers Stocks_Top Gainers Stocks: IFCI": {
+    "title": "Top Gainers Stocks: IFCI",
+    "description": "IFCI - 15.69%",
+    "url": "https://trendlyne.com/equity/593/IFCI/ifci-ltd/",
+    "timestamp": "2025-05-18 18:29:00",
+    "type": "SCREEN",
+    "screenType": "Top Gainers Stocks",
+    "details": {
+      "currentPrice": "51.77",
+      "day_changeP": "15.69",
+      "vol_day": "83,779,268.0",
+      "vol_week": "25,293,729.0"
+    }
+  },
+  "SCREEN_Top Gainers Stocks_Top Gainers Stocks: RITES": {
+    "title": "Top Gainers Stocks: RITES",
+    "description": "RITES - 15.60%",
+    "url": "https://trendlyne.com/equity/92280/RITES/rites-ltd/",
+    "timestamp": "2025-05-18 18:29:00",
+    "type": "SCREEN",
+    "screenType": "Top Gainers Stocks",
+    "details": {
+      "currentPrice": "286.99",
+      "day_changeP": "15.6",
+      "vol_day": "25,091,451.0",
+      "vol_week": "6,774,948.0"
+    }
+  },
+  "SCREEN_Top Gainers Stocks_Top Gainers Stocks: TITAGARH": {
+    "title": "Top Gainers Stocks: TITAGARH",
+    "description": "TITAGARH - 12.83%",
+    "url": "https://trendlyne.com/equity/1434/TITAGARH/titagarh-rail-systems-ltd/",
+    "timestamp": "2025-05-18 18:29:00",
+    "type": "SCREEN",
+    "screenType": "Top Gainers Stocks",
+    "details": {
+      "currentPrice": "912.85",
+      "day_changeP": "12.83",
+      "vol_day": "22,502,300.0",
+      "vol_week": "6,973,537.0"
+    }
+  },
+  "SCREEN_Top Gainers Stocks_Top Gainers Stocks: COCHINSHIP": {
+    "title": "Top Gainers Stocks: COCHINSHIP",
+    "description": "COCHINSHIP - 12.33%",
+    "url": "https://trendlyne.com/equity/57095/COCHINSHIP/cochin-shipyard-ltd/",
+    "timestamp": "2025-05-18 18:29:00",
+    "type": "SCREEN",
+    "screenType": "Top Gainers Stocks",
+    "details": {
+      "currentPrice": "2,035.6",
+      "day_changeP": "12.33",
+      "vol_day": "33,598,999.0",
+      "vol_week": "15,988,179.0"
+    }
+  },
+  "SCREEN_Top Gainers Stocks_Top Gainers Stocks: MAZDOCK": {
+    "title": "Top Gainers Stocks: MAZDOCK",
+    "description": "MAZDOCK - 10.68%",
+    "url": "https://trendlyne.com/equity/305195/MAZDOCK/mazagon-dock-shipbuilders-ltd/",
+    "timestamp": "2025-05-18 18:29:00",
+    "type": "SCREEN",
+    "screenType": "Top Gainers Stocks",
+    "details": {
+      "currentPrice": "3,522.4",
+      "day_changeP": "10.68",
+      "vol_day": "16,561,103.0",
+      "vol_week": "9,228,006.0"
+    }
+  },
+  "SCREEN_Top Losers Stocks_Top Losers Stocks: NEULANDLAB": {
+    "title": "Top Losers Stocks: NEULANDLAB",
+    "description": "NEULANDLAB - -6.77%",
+    "url": "https://trendlyne.com/equity/933/NEULANDLAB/neuland-laboratories-ltd/",
+    "timestamp": "2025-05-18 18:29:00",
+    "type": "SCREEN",
+    "screenType": "Top Losers Stocks",
+    "details": {
+      "currentPrice": "11,056.0",
+      "day_changeP": "-6.77",
+      "vol_day": "255,267.0",
+      "vol_week": "77,196.0"
+    }
+  },
+  "SCREEN_Top Losers Stocks_Top Losers Stocks: ALIVUS": {
+    "title": "Top Losers Stocks: ALIVUS",
+    "description": "ALIVUS - -5.26%",
+    "url": "https://trendlyne.com/equity/606572/ALIVUS/alivus-life-sciences-ltd/",
+    "timestamp": "2025-05-18 18:29:00",
+    "type": "SCREEN",
+    "screenType": "Top Losers Stocks",
+    "details": {
+      "currentPrice": "1,142.6",
+      "day_changeP": "-5.26",
+      "vol_day": "217,923.0",
+      "vol_week": "125,465.0"
+    }
+  },
+  "SCREEN_Top Losers Stocks_Top Losers Stocks: GODFRYPHLP": {
+    "title": "Top Losers Stocks: GODFRYPHLP",
+    "description": "GODFRYPHLP - -5.00%",
+    "url": "https://trendlyne.com/equity/475/GODFRYPHLP/godfrey-phillips-india-ltd/",
+    "timestamp": "2025-05-18 18:29:00",
+    "type": "SCREEN",
+    "screenType": "Top Losers Stocks",
+    "details": {
+      "currentPrice": "8,718.5",
+      "day_changeP": "-5.0",
+      "vol_day": "123,156.0",
+      "vol_week": "96,693.0"
+    }
+  },
+  "SCREEN_Top Losers Stocks_Top Losers Stocks: MEDANTA": {
+    "title": "Top Losers Stocks: MEDANTA",
+    "description": "MEDANTA - -3.39%",
+    "url": "https://trendlyne.com/equity/1108489/MEDANTA/global-health-ltd/",
+    "timestamp": "2025-05-18 18:29:00",
+    "type": "SCREEN",
+    "screenType": "Top Losers Stocks",
+    "details": {
+      "currentPrice": "1,201.1",
+      "day_changeP": "-3.39",
+      "vol_day": "592,915.0",
+      "vol_week": "202,807.0"
+    }
+  },
+  "SCREEN_Top Losers Stocks_Top Losers Stocks: JSWINFRA": {
+    "title": "Top Losers Stocks: JSWINFRA",
+    "description": "JSWINFRA - -2.96%",
+    "url": "https://trendlyne.com/equity/1698179/JSWINFRA/jsw-infrastructure-ltd/",
+    "timestamp": "2025-05-18 18:29:00",
+    "type": "SCREEN",
+    "screenType": "Top Losers Stocks",
+    "details": {
+      "currentPrice": "288.25",
+      "day_changeP": "-2.96",
+      "vol_day": "54,069,860.0",
+      "vol_week": "11,604,585.0"
+    }
+  },
+  "SCREEN_Relative Outperformance versus Nifty 500 over 1 Week_Relative Outperformance versus Nifty 500 over 1 Week: GRSE": {
+    "title": "Relative Outperformance versus Nifty 500 over 1 Week: GRSE",
+    "description": "GRSE - 38.26%",
+    "url": "https://trendlyne.com/equity/105874/GRSE/garden-reach-shipbuilders-engineers-ltd/",
+    "timestamp": "2025-05-18 18:29:01",
+    "type": "SCREEN",
+    "screenType": "Relative Outperformance versus Nifty 500 over 1 Week",
+    "details": {
+      "currentPrice": "2,481.7",
+      "day_changeP": "9.87",
+      "vol_day": "14,393,037.0",
+      "vol_week": "9,774,792.0"
+    }
+  },
+  "SCREEN_Relative Outperformance versus Nifty 500 over 1 Week_Relative Outperformance versus Nifty 500 over 1 Week: COCHINSHIP": {
+    "title": "Relative Outperformance versus Nifty 500 over 1 Week: COCHINSHIP",
+    "description": "COCHINSHIP - 37.11%",
+    "url": "https://trendlyne.com/equity/57095/COCHINSHIP/cochin-shipyard-ltd/",
+    "timestamp": "2025-05-18 18:29:01",
+    "type": "SCREEN",
+    "screenType": "Relative Outperformance versus Nifty 500 over 1 Week",
+    "details": {
+      "currentPrice": "2,035.6",
+      "day_changeP": "12.33",
+      "vol_day": "33,598,999.0",
+      "vol_week": "15,988,179.0"
+    }
+  },
+  "SCREEN_Relative Outperformance versus Nifty 500 over 1 Week_Relative Outperformance versus Nifty 500 over 1 Week: APARINDS": {
+    "title": "Relative Outperformance versus Nifty 500 over 1 Week: APARINDS",
+    "description": "APARINDS - 35.06%",
+    "url": "https://trendlyne.com/equity/88/APARINDS/apar-industries-ltd/",
+    "timestamp": "2025-05-18 18:29:01",
+    "type": "SCREEN",
+    "screenType": "Relative Outperformance versus Nifty 500 over 1 Week",
+    "details": {
+      "currentPrice": "8,228.0",
+      "day_changeP": "3.61",
+      "vol_day": "331,664.0",
+      "vol_week": "347,567.0"
+    }
+  },
+  "SCREEN_Relative Outperformance versus Nifty 500 over 1 Week_Relative Outperformance versus Nifty 500 over 1 Week: ECLERX": {
+    "title": "Relative Outperformance versus Nifty 500 over 1 Week: ECLERX",
+    "description": "ECLERX - 34.80%",
+    "url": "https://trendlyne.com/equity/356/ECLERX/eclerx-services-ltd/",
+    "timestamp": "2025-05-18 18:29:01",
+    "type": "SCREEN",
+    "screenType": "Relative Outperformance versus Nifty 500 over 1 Week",
+    "details": {
+      "currentPrice": "3,301.8",
+      "day_changeP": "4.62",
+      "vol_day": "307,265.0",
+      "vol_week": "455,450.0"
+    }
+  },
+  "SCREEN_Relative Outperformance versus Nifty 500 over 1 Week_Relative Outperformance versus Nifty 500 over 1 Week: KIRLOSENG": {
+    "title": "Relative Outperformance versus Nifty 500 over 1 Week: KIRLOSENG",
+    "description": "KIRLOSENG - 33.69%",
+    "url": "https://trendlyne.com/equity/745/KIRLOSENG/kirloskar-oil-engines-ltd/",
+    "timestamp": "2025-05-18 18:29:01",
+    "type": "SCREEN",
+    "screenType": "Relative Outperformance versus Nifty 500 over 1 Week",
+    "details": {
+      "currentPrice": "895.5",
+      "day_changeP": "3.85",
+      "vol_day": "2,506,425.0",
+      "vol_week": "2,388,188.0"
+    }
+  },
+  "SCREEN_Relative Underperformance versus Nifty500 over 1 Week_Relative Underperformance versus Nifty500 over 1 Week: RAYMOND": {
+    "title": "Relative Underperformance versus Nifty500 over 1 Week: RAYMOND",
+    "description": "RAYMOND - -58.27%",
+    "url": "https://trendlyne.com/equity/1115/RAYMOND/raymond-ltd/",
+    "timestamp": "2025-05-18 18:29:01",
+    "type": "SCREEN",
+    "screenType": "Relative Underperformance versus Nifty500 over 1 Week",
+    "details": {
+      "currentPrice": "607.6",
+      "day_changeP": "4.99",
+      "vol_day": "101,665.0",
+      "vol_week": "437,949.0"
+    }
+  },
+  "SCREEN_Relative Underperformance versus Nifty500 over 1 Week_Relative Underperformance versus Nifty500 over 1 Week: NEULANDLAB": {
+    "title": "Relative Underperformance versus Nifty500 over 1 Week: NEULANDLAB",
+    "description": "NEULANDLAB - -11.05%",
+    "url": "https://trendlyne.com/equity/933/NEULANDLAB/neuland-laboratories-ltd/",
+    "timestamp": "2025-05-18 18:29:01",
+    "type": "SCREEN",
+    "screenType": "Relative Underperformance versus Nifty500 over 1 Week",
+    "details": {
+      "currentPrice": "11,056.0",
+      "day_changeP": "-6.77",
+      "vol_day": "255,267.0",
+      "vol_week": "77,196.0"
+    }
+  },
+  "SCREEN_Relative Underperformance versus Nifty500 over 1 Week_Relative Underperformance versus Nifty500 over 1 Week: KPRMILL": {
+    "title": "Relative Underperformance versus Nifty500 over 1 Week: KPRMILL",
+    "description": "KPRMILL - -9.98%",
+    "url": "https://trendlyne.com/equity/764/KPRMILL/kpr-mill-ltd/",
+    "timestamp": "2025-05-18 18:29:01",
+    "type": "SCREEN",
+    "screenType": "Relative Underperformance versus Nifty500 over 1 Week",
+    "details": {
+      "currentPrice": "1,175.9",
+      "day_changeP": "2.91",
+      "vol_day": "1,058,501.0",
+      "vol_week": "1,223,651.0"
+    }
+  },
+  "SCREEN_Relative Underperformance versus Nifty500 over 1 Week_Relative Underperformance versus Nifty500 over 1 Week: CHAMBLFERT": {
+    "title": "Relative Underperformance versus Nifty500 over 1 Week: CHAMBLFERT",
+    "description": "CHAMBLFERT - -8.91%",
+    "url": "https://trendlyne.com/equity/258/CHAMBLFERT/chambal-fertilisers-chemicals-ltd/",
+    "timestamp": "2025-05-18 18:29:01",
+    "type": "SCREEN",
+    "screenType": "Relative Underperformance versus Nifty500 over 1 Week",
+    "details": {
+      "currentPrice": "632.1",
+      "day_changeP": "-0.63",
+      "vol_day": "1,743,564.0",
+      "vol_week": "2,382,154.0"
+    }
+  },
+  "SCREEN_Relative Underperformance versus Nifty500 over 1 Week_Relative Underperformance versus Nifty500 over 1 Week: VIJAYA": {
+    "title": "Relative Underperformance versus Nifty500 over 1 Week: VIJAYA",
+    "description": "VIJAYA - -8.39%",
+    "url": "https://trendlyne.com/equity/644314/VIJAYA/vijaya-diagnostic-centre-ltd/",
+    "timestamp": "2025-05-18 18:29:01",
+    "type": "SCREEN",
+    "screenType": "Relative Underperformance versus Nifty500 over 1 Week",
+    "details": {
+      "currentPrice": "909.8",
+      "day_changeP": "2.09",
+      "vol_day": "660,457.0",
+      "vol_week": "586,647.0"
+    }
+  },
+  "SCREEN_High Volume, Top Losers_High Volume, Top Losers: BHARTIARTL": {
+    "title": "High Volume, Top Losers: BHARTIARTL",
+    "description": "BHARTIARTL - 100662047.00%",
+    "url": "https://trendlyne.com/equity/187/BHARTIARTL/bharti-airtel-ltd/",
+    "timestamp": "2025-05-18 18:29:01",
+    "type": "SCREEN",
+    "screenType": "High Volume, Top Losers",
+    "details": {
+      "currentPrice": "1,814.0",
+      "day_changeP": "-2.85",
+      "vol_day": "100,662,047.0",
+      "vol_week": "25,921,158.0"
+    }
+  },
+  "SCREEN_High Volume, Top Losers_High Volume, Top Losers: JSWINFRA": {
+    "title": "High Volume, Top Losers: JSWINFRA",
+    "description": "JSWINFRA - 54069860.00%",
+    "url": "https://trendlyne.com/equity/1698179/JSWINFRA/jsw-infrastructure-ltd/",
+    "timestamp": "2025-05-18 18:29:01",
+    "type": "SCREEN",
+    "screenType": "High Volume, Top Losers",
+    "details": {
+      "currentPrice": "288.25",
+      "day_changeP": "-2.96",
+      "vol_day": "54,069,860.0",
+      "vol_week": "11,604,585.0"
+    }
+  },
+  "SCREEN_High Volume, Top Losers_High Volume, Top Losers: INDUSINDBK": {
+    "title": "High Volume, Top Losers: INDUSINDBK",
+    "description": "INDUSINDBK - 27168178.00%",
+    "url": "https://trendlyne.com/equity/625/INDUSINDBK/indusind-bank-ltd/",
+    "timestamp": "2025-05-18 18:29:01",
+    "type": "SCREEN",
+    "screenType": "High Volume, Top Losers",
+    "details": {
+      "currentPrice": "780.2",
+      "day_changeP": "-0.04",
+      "vol_day": "27,168,178.0",
+      "vol_week": "13,821,103.0"
+    }
+  },
+  "SCREEN_High Volume, Top Losers_High Volume, Top Losers: NCC": {
+    "title": "High Volume, Top Losers: NCC",
+    "description": "NCC - 21023233.00%",
+    "url": "https://trendlyne.com/equity/918/NCC/ncc-ltd/",
+    "timestamp": "2025-05-18 18:29:01",
+    "type": "SCREEN",
+    "screenType": "High Volume, Top Losers",
+    "details": {
+      "currentPrice": "227.19",
+      "day_changeP": "-0.98",
+      "vol_day": "21,023,233.0",
+      "vol_week": "8,165,891.0"
+    }
+  },
+  "SCREEN_High Volume, Top Losers_High Volume, Top Losers: LTF": {
+    "title": "High Volume, Top Losers: LTF",
+    "description": "LTF - 11118713.00%",
+    "url": "https://trendlyne.com/equity/777/LTF/l-t-finance-ltd/",
+    "timestamp": "2025-05-18 18:29:01",
+    "type": "SCREEN",
+    "screenType": "High Volume, Top Losers",
+    "details": {
+      "currentPrice": "174.87",
+      "day_changeP": "-1.77",
+      "vol_day": "11,118,713.0",
+      "vol_week": "7,057,245.0"
+    }
+  }
+}
