@@ -144,8 +144,8 @@ class TrendlyneService extends BaseService {
    */
   async fetchAllInsights() {
     const [marketInsights, screenInsights] = await Promise.all([
-      this.fetchMarketInsights(),
-      this.fetchAllScreenInsights()
+      this.fetchMarketInsights()
+    //  this.fetchAllScreenInsights()
     ]);
 
     return [
