@@ -6,7 +6,8 @@ A Node.js service that fetches market insights from Trendlyne and sends them to 
 dev: cron run with local and stop duplicate data
 devV1: Run process and exit the code
 devV2: Run cron without blocking history send message to telegram every time
-from dev -> devubu: Deploy in ubuntu machine
+devubu: Deploy in ubuntu machine with disabled cron for screen only market insight is running
+devunuV1: Deploy with mongoDB Capability
 
 ## prod deployment for ubuntu machine
 
