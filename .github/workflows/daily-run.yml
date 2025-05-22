@@ -1,8 +1,8 @@
 name: Daily Stock Alert Bot
 
 on:
-  schedule:
-   - cron: '0 */2 * * 1-5'
+  # schedule:
+  #  - cron: '0 */2 * * 1-5'
   workflow_dispatch:        # Allows manual trigger
   push:
     branches:
