@@ -6,7 +6,7 @@ on:
   workflow_dispatch:        # Allows manual trigger
   push:
     branches:
-      - devV1               # Also runs on push to devV1
+      - devV5               # Also runs on push to devV1
 
 jobs:
   run-bot:

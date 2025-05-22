@@ -1,12 +1,14 @@
 const logger = require('./logger');
 const fs = require('fs').promises;
 const path = require('path');
+const moment = require('moment-timezone');
 
 class InsightTracker {
   constructor() {
     this.lastInsights = new Map(); // Map to store last sent insights
     this.storageFile = path.join(__dirname, '../../data/insight-tracker.json');
-    this.initialized = false;
+    this.initialized = true; // No need for initialization since we're not persisting state
+    this.timezone = 'Asia/Kolkata'; // IST timezone
   }
 
   /**
@@ -69,58 +71,56 @@ class InsightTracker {
   }
 
   /**
-   * Compare new insights with previously sent ones
+   * Compare new insights with previously sent ones and filter by time
    * @param {Array} newInsights - Array of new insights
-   * @returns {Promise<Array>} Array of new insights that haven't been sent before
+   * @returns {Promise<Array>} Array of insights from the last 2 hours in IST
    */
   async getNewInsights(newInsights) {
-    if (!this.initialized) {
-      await this.initialize();
-    }
-
     if (!newInsights || !Array.isArray(newInsights)) {
       return [];
     }
 
-    const uniqueNewInsights = newInsights.filter(insight => {
-      const key = this.getInsightKey(insight);
-      if (!this.lastInsights.has(key)) {
-        this.lastInsights.set(key, insight);
-        logger.debug(`New insight found: ${key}`);
-        return true;
+    // Calculate the timestamp for 2 hours ago in IST
+    const twoHoursAgo = moment().tz(this.timezone).subtract(2, 'hours');
+    logger.debug(`Filtering insights after: ${twoHoursAgo.format('YYYY-MM-DD HH:mm:ss')} IST`);
+
+    // Filter insights from the last 2 hours
+    const recentInsights = newInsights.filter(insight => {
+      // Parse the insight timestamp in IST
+      const insightTime = moment.tz(insight.timeStamp, 'YYYY-MM-DD HH:mm:ss', this.timezone);
+      
+      if (!insightTime.isValid()) {
+        logger.warn(`Invalid timestamp for insight: ${this.getInsightKey(insight)}, timestamp: ${insight.timeStamp}`);
+        return false;
       }
-      logger.debug(`Duplicate insight found: ${key}`);
-      return false;
+
+      const isRecent = insightTime.isAfter(twoHoursAgo);
+      
+      if (isRecent) {
+        logger.debug(`Recent insight found: ${this.getInsightKey(insight)} at ${insightTime.format('YYYY-MM-DD HH:mm:ss')} IST`);
+      } else {
+        logger.debug(`Skipping old insight: ${this.getInsightKey(insight)} at ${insightTime.format('YYYY-MM-DD HH:mm:ss')} IST`);
+      }
+      
+      return isRecent;
     });
 
     // Log counts by type
-    const marketInsightsCount = uniqueNewInsights.filter(i => !i.type || i.type !== 'SCREEN').length;
-    const screenInsightsCount = uniqueNewInsights.filter(i => i.type === 'SCREEN').length;
-    logger.debug(`New insights by type - Market: ${marketInsightsCount}, Screen: ${screenInsightsCount}`);
+    const marketInsightsCount = recentInsights.filter(i => !i.type || i.type !== 'SCREEN').length;
+    const screenInsightsCount = recentInsights.filter(i => i.type === 'SCREEN').length;
+    logger.info(`Recent insights (last 2 hours in IST) - Market: ${marketInsightsCount}, Screen: ${screenInsightsCount}`);
 
-    // Clean up old insights (keep only last 1000 entries to prevent memory issues)
-    if (this.lastInsights.size > 1000) {
-      const keysToDelete = Array.from(this.lastInsights.keys()).slice(0, this.lastInsights.size - 1000);
-      keysToDelete.forEach(key => this.lastInsights.delete(key));
-      logger.debug(`Cleaned up ${keysToDelete.length} old insights`);
-    }
-
-    // Persist the updated data
-    if (uniqueNewInsights.length > 0) {
-      await this.persistData();
-    }
-
-    return uniqueNewInsights;
+    return recentInsights;
   }
 
   /**
-   * Get count of new insights
-   * @param {Array} newInsights - Array of new insights
-   * @returns {Promise<number>} Count of new insights
+   * Get count of recent insights
+   * @param {Array} insights - Array of insights
+   * @returns {Promise<number>} Count of recent insights
    */
   async getNewInsightsCount(insights) {
-    const uniqueInsights = await this.getNewInsights(insights);
-    return uniqueInsights.length;
+    const recentInsights = await this.getNewInsights(insights);
+    return recentInsights.length;
   }
 
   /**
