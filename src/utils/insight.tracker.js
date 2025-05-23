@@ -86,23 +86,28 @@ class InsightTracker {
 
     // Filter insights from the last 2 hours
     const recentInsights = newInsights.filter(insight => {
-      // Parse the insight timestamp in IST
-      const insightTime = moment.tz(insight.timeStamp, 'YYYY-MM-DD HH:mm:ss', this.timezone);
-      
-      if (!insightTime.isValid()) {
-        logger.warn(`Invalid timestamp for insight: ${this.getInsightKey(insight)}, timestamp: ${insight.timeStamp}`);
+      try {
+        // Parse the insight timestamp in IST format "DD MMM, YYYY HH:mm AM/PM (IST)"
+        const insightTime = moment.tz(insight.timeStamp, 'DD MMM, YYYY hh:mm A (IST)', this.timezone);
+        
+        if (!insightTime.isValid()) {
+          logger.warn(`Invalid timestamp for insight: ${this.getInsightKey(insight)}, timestamp: ${insight.timeStamp}`);
+          return false;
+        }
+
+        const isRecent = insightTime.isAfter(twoHoursAgo);
+        
+        if (isRecent) {
+          logger.debug(`Recent insight found: ${this.getInsightKey(insight)} at ${insightTime.format('YYYY-MM-DD HH:mm:ss')} IST`);
+        } else {
+          logger.debug(`Skipping old insight: ${this.getInsightKey(insight)} at ${insightTime.format('YYYY-MM-DD HH:mm:ss')} IST`);
+        }
+        
+        return isRecent;
+      } catch (error) {
+        logger.warn(`Error parsing timestamp for insight: ${this.getInsightKey(insight)}, timestamp: ${insight.timeStamp}, error: ${error.message}`);
         return false;
       }
-
-      const isRecent = insightTime.isAfter(twoHoursAgo);
-      
-      if (isRecent) {
-        logger.debug(`Recent insight found: ${this.getInsightKey(insight)} at ${insightTime.format('YYYY-MM-DD HH:mm:ss')} IST`);
-      } else {
-        logger.debug(`Skipping old insight: ${this.getInsightKey(insight)} at ${insightTime.format('YYYY-MM-DD HH:mm:ss')} IST`);
-      }
-      
-      return isRecent;
     });
 
     // Log counts by type
